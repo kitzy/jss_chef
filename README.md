@@ -72,7 +72,7 @@ e.g.
     <td><tt>['tomcat-jss']['DownloadURL']</tt></td>
     <td>String</td>
     <td>URL where JSS ROOT.war can be downloaded</td>
-    <td><tt>localhost</tt></td>
+    <td><tt>http://localhost</tt></td>
   </tr>
 </table>
 
