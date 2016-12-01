@@ -2,6 +2,11 @@ jss_chef Cookbook
 ===================
 This cookbook installs and configures Jamf Pro.
 
+Prerequisites
+-------------
+
+You will need to host your own HTTP(S) repo to serve the Jamf Pro ROOT.war files. These will need to be re-named to reflect the version number with a syntax of ${version}.war, i.e. 9.93.war.
+
 Attributes
 ----------
 
