@@ -1,0 +1,72 @@
+#!/bin/bash
+
+function checkTomcat()
+{
+  echo "Checking Tomcat installation type..."
+  if [ -d "/var/lib/tomcat7" ]
+    then
+      tomcatPath="/var/lib/tomcat7"
+  elif [ -d "/usr/local/jss/tomcat" ]
+    then
+      tomcatPath="/usr/local/jss/tomcat"
+  else
+    echo "Tomcat7 does not appear to be installed."
+    exit 1
+  fi
+  echo "Tomcat path is ${tomcatPath}"
+}
+
+function readDatabaseSettings()
+{
+  echo "Reading database connection settings..."
+
+  dbHost=""
+  dbName=""
+  dbUser=""
+  dbPass=""
+
+  dbHost=$(sed -n 's|\s*<ServerName>\(.*\)</ServerName>|\1|p' ${tomcatPath}/webapps/ROOT/WEB-INF/xml/DataBase.xml)
+  if [ "$?" == "0" ]
+    then
+      echo "Database host is ${dbHost}"
+    else
+      echo "Unable to retrieve database host"
+  fi
+  dbName=$(sed -n 's|\s*<DataBaseName>\(.*\)</DataBaseName>|\1|p' ${tomcatPath}/webapps/ROOT/WEB-INF/xml/DataBase.xml)
+  if [ "$?" == "0" ]
+    then
+      echo "Database name is ${dbName}"
+    else
+      echo "Unable to retrieve database name"
+  fi
+  dbUser=$(sed -n 's|\s*<DataBaseUser>\(.*\)</DataBaseUser>|\1|p' ${tomcatPath}/webapps/ROOT/WEB-INF/xml/DataBase.xml)
+  if [ "$?" == "0" ]
+    then
+      echo "Database user is ${dbUser}"
+    else
+      echo "Unable to retrieve database user"
+  fi
+  dbPass=$(sed -n 's|\s*<DataBasePassword>\(.*\)</DataBasePassword>|\1|p' ${tomcatPath}/webapps/ROOT/WEB-INF/xml/DataBase.xml)
+  if [ "$?" == "0" ]
+    then
+      echo "Database password is ${dbPass}"
+    else
+      echo "Unable to retrieve database password"
+  fi
+
+  if [ -z "${dbHost}" ] || [ -z "${dbName}" ] || [ -z "${dbUser}" ] || [ -z "${dbPass}" ]
+    then
+      echo "Unable to retrieve database settings"
+      exit 2
+  fi
+}
+
+### Main Program ###
+
+checkTomcat
+readDatabaseSettings
+
+#MySQL login
+mysql -h "${dbHost}" -u "${dbUser}" -p"${dbPass}" "${dbName}"
+
+exit 0

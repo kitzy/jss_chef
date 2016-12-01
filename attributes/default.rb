@@ -1,0 +1,10 @@
+default['jss_chef']['MaxMemory'] = 1024
+default['jss_chef']['maxThreads'] = 225
+default['jss_chef']['MaxPoolSize'] = 90
+default['jss_chef']['sessionTimeout'] = 30
+default['jss_chef']['ServerName'] = 'localhost'
+default['jss_chef']['DataBaseName'] = 'jamfsoftware'
+default['jss_chef']['DataBaseUser'] = 'jamfsoftware'
+default['jss_chef']['DataBasePassword'] = 'jamfsw03'
+default['jss_chef']['jssversion'] = '9.93'
+default['jss_chef']['DownloadURL'] = 'http://localhost'

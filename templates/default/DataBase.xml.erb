@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataBase>
+        <DataBaseType>mysql</DataBaseType>
+        <DataBaseDriver>com.mysql.jdbc.Driver</DataBaseDriver>
+        <ServerName><%= @ServerName %></ServerName>
+        <ServerPort>3306</ServerPort>
+        <DataBaseName><%= @DataBaseName %></DataBaseName>
+        <DataBaseUser><%= @DataBaseUser %></DataBaseUser>
+        <DataBasePassword><%= @DataBasePassword %></DataBasePassword>
+        <MinPoolSize>5</MinPoolSize>
+        <MaxPoolSize><%= @MaxPoolSize %></MaxPoolSize>
+        <MaxIdleTimeExcessConnectionsInMinutes>1</MaxIdleTimeExcessConnectionsInMinutes>
+        <MaxConnectionAgeInMinutes>5</MaxConnectionAgeInMinutes>
+        <NumHelperThreads>3</NumHelperThreads>
+        <InStatementBatchSize>1000</InStatementBatchSize>
+        <jdbcParameters>?characterEncoding=utf8&amp;useUnicode=true&amp;jdbcCompliantTruncation=false</jdbcParameters>
+</DataBase>
