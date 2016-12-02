@@ -31,7 +31,7 @@ service 'tomcat7' do
   action [:start, :enable]
 end
 
-directory '/var/log/jss' do
+directory "#{logPath}" do
   action :create
   owner 'tomcat7'
   group 'tomcat7'
@@ -39,7 +39,7 @@ directory '/var/log/jss' do
 end
 
 %w( JAMFChangeManagement.log JAMFSoftwareServer.log JSSAccess.log ).each do |name|
-  file "#{{logPath}}/#{name}" do
+  file "#{logPath}/#{name}" do
     action :create_if_missing
     owner 'tomcat7'
     group 'tomcat7'
