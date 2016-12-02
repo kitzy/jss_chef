@@ -6,6 +6,6 @@ issues_url       "#{source_url}/issues"
 license          'All rights reserved'
 description      'Installs/Configures JSS'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.18'
+version          '0.1.19'
 depends          'apt'
 depends          'chef-vault'

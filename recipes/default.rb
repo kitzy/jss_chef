@@ -12,6 +12,7 @@ include_recipe 'chef-vault::default'
 
 jssversion = node['jss_chef']['jssversion']
 downloadURL = node['jss_chef']['DownloadURL']
+logPath = node['jss_chef']['LogPath']
 
 apt_package 'openjdk-7-jdk' do
   action :install
@@ -38,7 +39,7 @@ directory '/var/log/jss' do
 end
 
 %w( JAMFChangeManagement.log JAMFSoftwareServer.log JSSAccess.log ).each do |name|
-  file "/var/log/jss/#{name}" do
+  file "#{{logPath}}/#{name}" do
     action :create_if_missing
     owner 'tomcat7'
     group 'tomcat7'
@@ -113,8 +114,11 @@ template 'var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml' do
   notifies :restart, 'service[tomcat7]', :delayed
 end
 
-cookbook_file 'var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/log4j.properties' do
-  source 'log4j.properties'
+template 'var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/log4j.properties' do
+  source 'log4j.properties.erb'
+  variables(
+    LogPath: node['jss_chef']['LogPath']
+  )
   notifies :restart, 'service[tomcat7]', :delayed
 end
 

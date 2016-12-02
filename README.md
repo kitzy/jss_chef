@@ -44,6 +44,12 @@ e.g.
     <td><tt>30</tt></td>
   </tr>
   <tr>
+    <td><tt>['tomcat-jss']['LogPath']</tt></td>
+    <td>String</td>
+    <td>Path to store JSS log files</td>
+    <td><tt>/var/log/jss</tt></td>
+  </tr>
+  <tr>
     <td><tt>['tomcat-jss']['ServerName']</tt></td>
     <td>String</td>
     <td>FQDN of database server</td>
