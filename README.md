@@ -76,7 +76,7 @@ e.g.
   <tr>
     <td><tt>['jss_chef']['jssversion']</tt></td>
     <td>String</td>
-    <td>Name of JSS database</td>
+    <td>JSS Version number</td>
     <td><tt>9.96</tt></td>
   </tr>
   <tr>
